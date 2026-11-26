@@ -239,12 +239,14 @@ main, .footer { position: relative; z-index: 1; }
 .contact { background: var(--bg2); border-top: 1px solid var(--line); overflow: hidden; }
 .contact::before { content: ''; position: absolute; right: -200px; top: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(82,96,109,0.14), transparent 65%); pointer-events: none; }
 .contact-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 28px; align-items: stretch; position: relative; }
-.contact-left { display: grid; grid-template-rows: auto auto minmax(280px, 1fr); gap: 16px; align-self: stretch; }
+.contact-left { display: grid; grid-template-rows: auto auto auto minmax(280px, 1fr); gap: 16px; align-self: stretch; }
 .info-card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px 28px; }
 .info-card h3 { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass2); font-weight: 500; margin-bottom: 8px; }
 .info-card p { font-size: 17px; overflow-wrap: anywhere; }
 .info-card a { border-bottom: 1px solid var(--brass); transition: color 0.2s; }
 .info-card a:hover { color: var(--brass2); }
+.phone-link { display: inline-flex; align-items: center; gap: 8px; }
+.phone-icon { width: 16px; height: 16px; flex: none; }
 .map { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
 .map iframe { width: 100%; flex: 1; min-height: 232px; border: 0; display: block; }
 .map a { display: block; flex: none; padding: 14px 20px; font-size: 14px; color: var(--brass2); border-top: 1px solid var(--line); }
@@ -268,7 +270,7 @@ main, .footer { position: relative; z-index: 1; }
 .status.err { background: #fff0ee; color: #9c2f26; border: 1px solid #f0c1bb; }
 @media (max-width: 900px) {
   .contact-grid { grid-template-columns: 1fr; }
-  .contact-left { grid-template-rows: auto auto 320px; }
+  .contact-left { grid-template-rows: auto auto auto 320px; }
   .form-wrap { height: auto; }
 }
 
