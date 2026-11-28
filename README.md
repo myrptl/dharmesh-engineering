@@ -78,7 +78,7 @@ vite.config.js            Vite and React configuration
 
 The contact form submits enquiries directly to the Google Apps Script endpoint configured as `SCRIPT_URL` in `src/constants.js`. It accepts an optional PDF or JPEG drawing up to 5 MB. The script validates submissions, applies a global rate limit of five requests per 15-minute window, and sends enquiries to the address in `config/contact.json`; the recipient is never taken from submitted data. The form also includes a honeypot field and a minimum review delay.
 
-Change the contact email or phone only in `config/contact.json`. `npm run build` updates the website and regenerates `apps-script/Config.gs` from that shared setting. Because Google Apps Script is deployed separately, copy both `apps-script/Config.gs` and `apps-script/Code.gs` into the Apps Script project and deploy a new version after changing the contact details.
+Change the contact email only in `config/contact.json`. `npm run build` updates the website and regenerates `apps-script/Config.gs` from that shared setting. Because Google Apps Script is deployed separately, copy both `apps-script/Config.gs` and `apps-script/Code.gs` into the Apps Script project and deploy a new version after changing the contact email.
 
 ### Configure Apps Script
 

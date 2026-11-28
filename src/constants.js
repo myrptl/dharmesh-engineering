@@ -105,8 +105,6 @@ export const FORM_MIN_REVIEW_TIME_MS = 3000
 export const MAX_DRAWING_FILE_SIZE_BYTES = 5 * 1024 * 1024
 export const ACCEPTED_DRAWING_MIME_TYPES = ['application/pdf', 'image/jpeg']
 export const CONTACT_EMAIL = contactConfig.email
-export const CONTACT_PHONE = contactConfig.phone
-export const CONTACT_PHONE_TEL = `+${CONTACT_PHONE.replace(/\D/g, '')}`
 
 export const SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbzPAMatimjzDemwXtmilBEQWAy4yx3CDau-tXsUnVC7dja7oRxGZqPlxu2Vv05ghlZztA/exec'

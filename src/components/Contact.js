@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   ACCEPTED_DRAWING_MIME_TYPES,
   CONTACT_EMAIL,
-  CONTACT_PHONE,
-  CONTACT_PHONE_TEL,
   FORM_MIN_REVIEW_TIME_MS,
   MAX_DRAWING_FILE_SIZE_BYTES,
   SCRIPT_URL,
@@ -126,27 +124,6 @@ export default function Contact() {
               <h3>Email</h3>
               <p>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-              </p>
-            </div>
-            <div className='info-card'>
-              <h3>Phone</h3>
-              <p>
-                <a className='phone-link' href={`tel:${CONTACT_PHONE_TEL}`}>
-                  <svg
-                    className='phone-icon'
-                    viewBox='0 0 24 24'
-                    aria-hidden='true'>
-                    <path
-                      d='M5 4h3l2 5-2 1.5a15 15 0 005.5 5.5L15 14l5 2v3a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth='1.7'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                  {CONTACT_PHONE}
-                </a>
               </p>
             </div>
             <div className='map'>
