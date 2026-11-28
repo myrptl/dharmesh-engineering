@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run sync:apps-script-config && vite build",
+    "test": "node --test",
+    "sync:apps-script-config": "node scripts/generate-apps-script-config.js",
     "preview": "vite preview"
   },
   "dependencies": {
