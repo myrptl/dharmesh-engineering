@@ -2,6 +2,9 @@ import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ACCEPTED_DRAWING_MIME_TYPES,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_TEL,
   FORM_MIN_REVIEW_TIME_MS,
   MAX_DRAWING_FILE_SIZE_BYTES,
   SCRIPT_URL,
@@ -57,14 +60,29 @@ export default function Contact() {
             }
           : null,
       };
-      const resp = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
-      });
-      const result = await resp.json();
-      if (!result.success)
-        throw new Error(result.message || 'Submission failed.');
+      let resp;
+      try {
+        resp = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        });
+      } catch (_error) {
+        throw new Error(
+          `We couldn't reach the email service. Please try again or email ${CONTACT_EMAIL}.`
+        );
+      }
+
+      let result;
+      try {
+        result = await resp.json();
+      } catch (_error) {
+        throw new Error(
+          `The email service returned an invalid response. Please try again or email ${CONTACT_EMAIL}.`
+        );
+      }
+      if (!resp.ok || !result || !result.success)
+        throw new Error(result?.message || `Submission failed. Please email ${CONTACT_EMAIL}.`);
       setStatus({
         ok: true,
         msg: result.message || 'Thank you. We have received your enquiry.',
@@ -74,10 +92,7 @@ export default function Contact() {
     } catch (err) {
       setStatus({
         ok: false,
-        msg:
-          err.message === 'Failed to fetch' ?
-            "We couldn't confirm submission. Please try again or email dharmeshenggg@gmail.com."
-          : err.message,
+        msg: err instanceof Error ? err.message : `Unable to submit. Please email ${CONTACT_EMAIL}.`,
       });
     } finally {
       setBusy(false);
@@ -110,13 +125,13 @@ export default function Contact() {
             <div className='info-card'>
               <h3>Email</h3>
               <p>
-                <a href='mailto:myrptl65@gmail.com'>dharmeshenggg@gmail.com</a>
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </p>
             </div>
             <div className='info-card'>
               <h3>Phone</h3>
               <p>
-                <a className='phone-link' href='tel:+917359443766'>
+                <a className='phone-link' href={`tel:${CONTACT_PHONE_TEL}`}>
                   <svg
                     className='phone-icon'
                     viewBox='0 0 24 24'
@@ -130,7 +145,7 @@ export default function Contact() {
                       strokeLinejoin='round'
                     />
                   </svg>
-                  +91 7359443766
+                  {CONTACT_PHONE}
                 </a>
               </p>
             </div>
